@@ -14,22 +14,22 @@ jobs:
         with:
           java-version: '11'
       - name: create release package
-        run: echo "abcd" > my-release.1.txt
+        run: echo "abcd" > my-release.1.1.1.txt
       - name: Get the version
         id: get_version
         if: startsWith(github.ref, 'refs/tags/')
         run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
-      - name: create release package 2
-        run: echo "abcd" > my-2nd-release.2.txt
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          tag: ${{ github.ref }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: my-2nd-release.*.txt
-          file_glob: true
-          release_name: Release ${{ steps.get_version.outputs.VERSION }}
-          overwrite: true
+      # - name: create release package 2
+      #   run: echo "abcd" > my-2nd-release.2.txt
+      # - name: Upload binaries to release
+      #   uses: svenstaro/upload-release-action@v2
+      #   with:
+      #     tag: ${{ github.ref }}
+      #     repo_token: ${{ secrets.GITHUB_TOKEN }}
+      #     file: my-2nd-release.*.txt
+      #     file_glob: true
+      #     release_name: Release ${{ steps.get_version.outputs.VERSION }}
+      #     overwrite: true
       - name: attach artefacts to release
         uses: softprops/action-gh-release@v1
         with:
