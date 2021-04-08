@@ -14,7 +14,7 @@ jobs:
         with:
           java-version: '11'
       - name: create release package
-        run: touch my-release.txt
+        run: echo "abcd" > my-release.txt
       - name: attach artefacts to release
         uses: softprops/action-gh-release@v1
         with:
